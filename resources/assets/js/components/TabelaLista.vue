@@ -59,6 +59,7 @@
 <script>
     export default {
         props:['titulos', 'itens', 'ordem', 'ordemCol', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+        
         data: function(){
             return {
                 buscar:'',
