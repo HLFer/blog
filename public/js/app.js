@@ -44219,7 +44219,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['titulos', 'itens', 'ordem', 'ordemCol', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
     data: function data() {
         return {
-            buscar: ''
+            buscar: '',
+            ordemAux: this.ordem || "asc",
+            ordemAuxCol: this.ordemCol || 0
         };
     },
     methods: {
@@ -44227,11 +44229,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.getElementById(index).submit();
         },
         ordenaColuna: function ordenaColuna(coluna) {
-            this.ordemCol = coluna;
-            if (this.ordem.toLowerCase() == "asc") {
-                this.ordem = 'desc';
+            this.ordemAuxCol = coluna;
+            if (this.ordemAux.toLowerCase() == "asc") {
+                this.ordemAux = 'desc';
             } else {
-                this.ordem = 'asc';
+                this.ordemAux = 'asc';
             }
         }
     },
@@ -44239,28 +44241,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         lista: function lista() {
             var _this = this;
 
-            var ordem = this.ordem || "asc";
-            var ordemCol = this.ordemCol || 0;
+            var ordemAux = this.ordemAux;
+            var ordemAuxCol = this.ordemAuxCol;
 
-            ordem = ordem.toLowerCase();
-            ordemCol = parseInt(ordemCol);
+            ordemAux = ordemAux.toLowerCase();
+            ordemAuxCol = parseInt(ordemAuxCol);
 
-            if (ordem == "asc") {
+            if (ordemAux == "asc") {
                 this.itens.sort(function (a, b) {
-                    if (a[ordemCol] > b[ordemCol]) {
+                    if (a[ordemAuxCol] > b[ordemAuxCol]) {
                         return 1;
                     }
-                    if (a[ordemCol] < b[ordemCol]) {
+                    if (a[ordemAuxCol] < b[ordemAuxCol]) {
                         return -1;
                     }
                     return 0;
                 });
             } else {
                 this.itens.sort(function (a, b) {
-                    if (a[ordemCol] < b[ordemCol]) {
+                    if (a[ordemAuxCol] < b[ordemAuxCol]) {
                         return 1;
                     }
-                    if (a[ordemCol] > b[ordemCol]) {
+                    if (a[ordemAuxCol] > b[ordemAuxCol]) {
                         return -1;
                     }
                     return 0;
