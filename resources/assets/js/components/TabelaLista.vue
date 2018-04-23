@@ -58,7 +58,7 @@
 
 <script>
     export default {
-        props:['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+        props:['titulos', 'itens', 'ordem', 'ordemCol', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
         data: function(){
             return {
                 buscar:''
@@ -72,11 +72,26 @@
         computed:{
             lista: function(){
                 
-                this.itens.sort(function(a,b){
-                    if(a[0] > b[0]) {return 1;}
-                    if(a[0] < b[0]) {return -1;}
+                let ordem = this.ordem || "asc"; 
+                let ordemCol = this.ordemCol || 0;
+
+                ordem = ordem.toLowerCase();
+                ordemCol = parseInt(ordemCol);
+
+                if(ordem == "asc"){
+                    this.itens.sort(function(a,b){
+                    if(a[ordemCol] > b[ordemCol]) {return 1;}
+                    if(a[ordemCol] < b[ordemCol]) {return -1;}
                     return 0;
-                });
+                    });
+                }
+                else{
+                    this.itens.sort(function(a,b){
+                        if(a[ordemCol] < b[ordemCol]) {return 1;}
+                        if(a[ordemCol] > b[ordemCol]) {return -1;}
+                        return 0;
+                    });
+                }
 
                 return this.itens.filter(response => {
                     for(let k = 0; k < response.length; k++){

@@ -7,6 +7,7 @@
         <tabela-lista 
         v-bind:titulos="['#', 'Título','Descrição']"
         v-bind:itens="[[1,'PHP OO', 'Curso de PHP - OO'],[2, 'Vue JS', 'Curso de Vue JS']]"
+        ordem="desc" ordemCol="1"
         criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="12344343"
         ></tabela-lista>
     </painel>
