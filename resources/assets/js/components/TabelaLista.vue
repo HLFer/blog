@@ -1,11 +1,10 @@
 <template>
     <div class="">
-        <a v-if="criar" v-bind:href="criar">Criar</a>
 
         <div class="form-inline">
             <a v-if="criar" v-bind:href="criar">Criar</a>
             <div class="form-group pull-right">
-                <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">{{buscar}}
+                <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
             </div>
         </div>
 
@@ -72,9 +71,14 @@
         },
         computed:{
             lista: function(){
-                let busca = "php";
+                
                 return this.itens.filter(response => {
-                    return false;
+                    for(let k = 0; k < response.length; k++){
+                        if((response[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0){
+                        return true;
+                        }
+                    }
+                    return false; 
                 });
 
 
