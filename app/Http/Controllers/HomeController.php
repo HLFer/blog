@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $listaMigalhas = json_encode([
+            ["titulo"=>"Home","url"=>""],
+            //["titulo"=>"Lista de Compras","url"=>""]
+        ]);
+
+        //return view('admin.artigos.index',compact('listaMigalhas'));
+
+        return view('home', compact('listaMigalhas'));
     }
 }
