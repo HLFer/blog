@@ -44216,75 +44216,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titulos', 'itens', 'ordem', 'ordemCol', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
-
-    data: function data() {
-        return {
-            buscar: '',
-            ordemAux: this.ordem || "asc",
-            ordemAuxCol: this.ordemCol || 0
-        };
+  props: ['titulos', 'itens', 'ordem', 'ordemcol', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+  data: function data() {
+    return {
+      buscar: '',
+      ordemAux: this.ordem || "asc",
+      ordemAuxCol: this.ordemcol || 0
+    };
+  },
+  methods: {
+    executaForm: function executaForm(index) {
+      document.getElementById(index).submit();
     },
-    methods: {
-        executaForm: function executaForm(index) {
-            document.getElementById(index).submit();
-        },
-        ordenaColuna: function ordenaColuna(coluna) {
-            this.ordemAuxCol = coluna;
-            if (this.ordemAux.toLowerCase() == "asc") {
-                this.ordemAux = 'desc';
-            } else {
-                this.ordemAux = 'asc';
-            }
-        }
-    },
-    computed: {
-        lista: function lista() {
-            var _this = this;
-
-            var ordemAux = this.ordemAux;
-            var ordemAuxCol = this.ordemAuxCol;
-
-            ordemAux = ordemAux.toLowerCase();
-            ordemAuxCol = parseInt(ordemAuxCol);
-
-            if (ordemAux == "asc") {
-                this.itens.sort(function (a, b) {
-                    if (a[ordemAuxCol] > b[ordemAuxCol]) {
-                        return 1;
-                    }
-                    if (a[ordemAuxCol] < b[ordemAuxCol]) {
-                        return -1;
-                    }
-                    return 0;
-                });
-            } else {
-                this.itens.sort(function (a, b) {
-                    if (a[ordemAuxCol] < b[ordemAuxCol]) {
-                        return 1;
-                    }
-                    if (a[ordemAuxCol] > b[ordemAuxCol]) {
-                        return -1;
-                    }
-                    return 0;
-                });
-            }
-
-            return this.itens.filter(function (response) {
-                for (var k = 0; k < response.length; k++) {
-                    if ((response[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
-                        return true;
-                    }
-                }
-                return false;
-            });
-            return this.itens;
-        }
+    ordenaColuna: function ordenaColuna(coluna) {
+      this.ordemAuxCol = coluna;
+      if (this.ordemAux.toLowerCase() == "asc") {
+        this.ordemAux = 'desc';
+      } else {
+        this.ordemAux = 'asc';
+      }
     }
+  },
+  computed: {
+    lista: function lista() {
+      var _this = this;
+
+      var ordem = this.ordemAux;
+      var ordemCol = this.ordemAuxCol;
+      ordem = ordem.toLowerCase();
+      ordemCol = parseInt(ordemCol);
+
+      if (ordem == "asc") {
+        this.itens.sort(function (a, b) {
+          if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
+            return 1;
+          }
+          if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
+            return -1;
+          }
+          return 0;
+        });
+      } else {
+        this.itens.sort(function (a, b) {
+          if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
+            return 1;
+          }
+          if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
+            return -1;
+          }
+          return 0;
+        });
+      }
+
+      if (this.buscar) {
+        return this.itens.filter(function (res) {
+          for (var k = 0; k < res.length; k++) {
+            if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+              return true;
+            }
+          }
+          return false;
+        });
+      }
+
+      return this.itens;
+    }
+  }
 });
 
 /***/ }),
@@ -44295,7 +44294,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
+  return _c("div", [
     _c("div", { staticClass: "form-inline" }, [
       _vm.criar
         ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
@@ -44430,6 +44429,12 @@ var render = function() {
                             ? _c("a", { attrs: { href: _vm.editar } }, [
                                 _vm._v(" Editar |")
                               ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.deletar
+                            ? _c("a", { attrs: { href: _vm.deletar } }, [
+                                _vm._v(" Deletar")
+                              ])
                             : _vm._e()
                         ])
                       : _vm._e(),
@@ -44444,13 +44449,7 @@ var render = function() {
                           _vm._v(" "),
                           _vm.editar
                             ? _c("a", { attrs: { href: _vm.editar } }, [
-                                _vm._v(" Editar |")
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.deletar
-                            ? _c("a", { attrs: { href: _vm.deletar } }, [
-                                _vm._v(" Deletar")
+                                _vm._v(" Editar")
                               ])
                             : _vm._e()
                         ])
