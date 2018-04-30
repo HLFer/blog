@@ -7,21 +7,20 @@
     
         <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
         
-        <modal-link tipo="button" nome="meuModalTeste" titulo="Criar" css=""></modal-link>
-
-
         <tabela-lista 
         
         v-bind:titulos="['#', 'Título','Descrição']"
         v-bind:itens="{{$listaArtigos}}"
         criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="12344343"
+        modal="sim"
 
         ></tabela-lista>
 
     </painel>
 </pagina>
 
-<modal nome="meuModalTeste">
+<!--Formulário para adicionar artigos-->
+<modal nome="adicionar">
     <painel titulo="Adicionar">
        <formulario css="" action="#" method="put" enctype="multipart/form-data" token="12345">
 
@@ -38,5 +37,45 @@
        </formulario>
     </painel>
 </modal>
+
+<!--Formulário para editar artigos-->
+<modal nome="editar">
+    <painel titulo="Editar">
+       <formulario css="" action="#" method="put" enctype="multipart/form-data" token="12345">
+
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">
+            </div>
+            <button class="btn btn-info">Atualizar</button>
+       
+       </formulario>
+    </painel>
+</modal>
+
+<!--Formulário para adicionar artigos-->
+<modal nome="adicionar">
+    <painel titulo="Adicionar">
+       <formulario css="" action="#" method="put" enctype="multipart/form-data" token="12345">
+
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">
+            </div>
+            <button class="btn btn-info">Adicionar</button>
+       
+       </formulario>
+    </painel>
+</modal>
+
+
 
 @endsection
